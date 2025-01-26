@@ -22,11 +22,11 @@ public:
 void printTree(Node* node, string prefix = "", bool isLast = true) {
     cout << prefix;
     if (isLast) {
-        cout << "└── ";
+        cout << "\\-- ";
         prefix += "    ";
     } else {
-        cout << "├── ";
-        prefix += "│   ";
+        cout << "|-- ";
+        prefix += "|    ";
     }
 
     cout << node->name << endl;
