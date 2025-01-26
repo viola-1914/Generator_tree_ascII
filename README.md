@@ -1,3 +1,6 @@
 # Generator_tree_ascII
-Conception d'un programme en c/c++ pour construire une structure arborescente.
-Utilisation des structures de données 
+creation d'une classe Node, avec les attributs nom : qui represente le nom du noeud, vector<node*>children qui est un vecteur de pointeurs permettant stoker les pointeurs pointant vers les enfants.
+Fonction recusive printree()
+pour la creation le l'arbre avec idendation et lignes ascII pour montrer la relation entre les différents noeuds. Fonction principale main pour l'exécution.
+
+ 
