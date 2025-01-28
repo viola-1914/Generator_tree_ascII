@@ -16,8 +16,27 @@ public:
     void addChild(Node* child) {
         children.push_back(child);
     }
+
+    //supprimer un enfant par nom
+    bool supprimer_enfant(const string& nomEnfant){
+        for(size_t i=0; i<children.size(); i++){
+            if(children[i]->name ==nomEnfant) {
+            delete children[i]; //liberer la mémoire
+            children.erase(children.begin() + i); //supprimer de la liste
+            return true; // l'enfant est supprimer
+            }
+        }
+        return false; // l'enfant n'hesite pas 
+    }
 };
 
+// Fonction pour libérer la mémoire de l'arbre
+void deleteTree(Node* node) {
+    for (Node* child : node->children) {
+        deleteTree(child); // Appel récursif pour libérer les enfants
+    }
+    delete node; // Libérer le nœud actuel
+}
 // Fonction récursive pour afficher l'arbre avec indentation ASCII
 void printTree(Node* node, string prefix = "", bool isLast = true) {
     cout << prefix;
@@ -36,29 +55,70 @@ void printTree(Node* node, string prefix = "", bool isLast = true) {
     }
 }
 
+// Fonction pour ajouter un noeud
+Node* addNode(Node* parent) {
+    string name;
+    cout << "Entrez le nom du nouveau nœud : ";
+    cin >> name;
+    Node* newNode = new Node(name);
+    parent->addChild(newNode);
+    return newNode;
+}
+
+
+
+// supprimé un noeud
+void removeNode(Node* parent) {
+    string name;
+    cout << "Entrez le nom du nœud à supprimer : ";
+    cin >> name;
+    if (parent->supprimer_enfant(name)) {
+        cout << "Nœud '" << name << "' supprimé." << endl;
+    } else {
+        cout << "Nœud '" << name << "' non trouvé." << endl;
+    }
+}
+
 int main() {
-    // Création des nœuds
+    // Création du noeud racine
     Node* root = new Node("Racine");
-    Node* enfant1 = new Node("Enfant1");
-    Node* enfant2 = new Node("Enfant2");
-    Node* sousEnfant1 = new Node("SousEnfant1");
-    Node* sousEnfant2 = new Node("SousEnfant2");
+      while (true)
+      {
+        /* code */
+     
 
-    // Construction de l'arbre
-    enfant1->addChild(sousEnfant1);
-    enfant1->addChild(sousEnfant2);
-    root->addChild(enfant1);
-    root->addChild(enfant2);
+        cout << "\nMenu :\n";
+        cout << "1. Afficher l'arbre\n";
+        cout << "2. Ajouter un nœud\n";
+        cout << "3. Supprimer un nœud\n";
+        cout << "4. Quitter\n";
+        cout << "Choisissez une option : ";
 
-    // Affichage de l'arbre
-    printTree(root);
+        int choice;
+        cin >> choice;
 
-    // Libération de la mémoire (important pour éviter les fuites)
-    delete sousEnfant1;
-    delete sousEnfant2;
-    delete enfant1;
-    delete enfant2;
-    delete root;
+        switch (choice) {
+            case 1:
+                printTree(root);
+                break;
+            case 2: {
+
+                
+               addNode(root);
+                break;
+                 }
+            case 3:
+                removeNode(root);
+                break;
+            case 4:
+                // Libération de la mémoire avant de quitter
+                 deleteTree(root); // Vous pouvez étendre cela pour libérer tous les nœuds
+                return 0;
+            default:
+                cout << "Choix invalide, veuillez réessayer." << endl;
+        }
+    }
+
 
     return 0;
 }
