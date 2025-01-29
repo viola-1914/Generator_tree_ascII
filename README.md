@@ -4,5 +4,5 @@ Fonction recusive printree()
 pour la creation le l'arbre avec idendation et lignes ascII pour montrer la relation entre les différents noeuds. Fonction principale main pour l'exécution.
 
 Ajout des fonctions pour ajouter, supprimer un noeud. Menu permettant l'ajout, la suppréssion d'un noeud.
-
+creation d'une chaine alimentaire .
  

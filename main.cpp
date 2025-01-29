@@ -55,15 +55,46 @@ void printTree(Node* node, string prefix = "", bool isLast = true) {
     }
 }
 
-// Fonction pour ajouter un noeud
-Node* addNode(Node* parent) {
-    string name;
-    cout << "Entrez le nom du nouveau nœud : ";
-    cin >> name;
-    Node* newNode = new Node(name);
-    parent->addChild(newNode);
-    return newNode;
+Node* findNode(Node* node, const string& name) {
+    if (node->name == name) {
+        return node;
+    }
+    for (Node* child : node->children) {
+        Node* result = findNode(child, name);
+        if (result != nullptr) {
+            return result;
+        }
+    }
+    return nullptr; // Nœud non trouvé
 }
+
+Node* addNode(Node* root) {
+    string parentName, childName;
+    cout << "Entrez le nom du parent sous lequel ajouter le nouveau nœud : ";
+    cin >> parentName;
+
+    Node* parentNode = findNode(root, parentName);
+    if (parentNode) {
+        cout << "Entrez le nom du nouveau nœud : ";
+        cin >> childName;
+        Node* newNode = new Node(childName);
+        parentNode->addChild(newNode);
+        return newNode;
+    } else {
+        cout << "Nœud parent '" << parentName << "' non trouvé." << endl;
+        return nullptr;
+    }
+}
+
+// Fonction pour ajouter un noeud
+//Node* addNode(Node* parent) {
+   // string name;
+   // cout << "Entrez le nom du nouveau nœud : ";
+   // cin >> name;
+   // Node* newNode = new Node(name);
+   // parent->addChild(newNode);
+   // return newNode;
+//}
 
 
 
@@ -81,7 +112,42 @@ void removeNode(Node* parent) {
 
 int main() {
     // Création du noeud racine
-    Node* root = new Node("Racine");
+    Node* root = new Node("Chaine Alimentaire");
+
+
+    Node* Producteurs = new Node("Producteurs");
+    Node* Plantes = new Node("Plantes");
+    Node* Algues= new Node("Algues");
+    Node* Herbivores= new Node("Herbivores");
+    Node* Lapin= new Node("Lapin");
+    Node* Cerf= new Node("Cerf");
+    Node* Carnivores = new Node("Carnivores");
+    Node* Loup= new Node("Loup");
+    Node* Aigle= new Node("Aigle");
+
+    Node* Omnivores = new Node("Omnivores");
+    Node* Homme= new Node("Homme");
+    Node* Singe= new Node("Singe");
+
+
+
+    // Construction de l'arbre
+    Producteurs->addChild(Plantes);
+    Producteurs->addChild(Algues);
+    Herbivores->addChild(Lapin);
+    Herbivores->addChild(Cerf);
+    Omnivores->addChild(Homme);
+    Omnivores->addChild(Singe);
+    Carnivores->addChild(Loup);
+    Carnivores->addChild(Aigle);
+    root->addChild(Producteurs);
+    root->addChild(Herbivores);
+    root->addChild(Carnivores);
+    root->addChild(Omnivores);
+
+
+
+
       while (true)
       {
         /* code */
