@@ -1,0 +1,10 @@
+^C:\USERS\HP PAVILION\DESKTOP\ARBRI\TREEASCI\BUILD\CMAKEFILES\CFE5FE10FEC915BD48B674EAAF87FE96\GENERATE.STAMP.RULE
+setlocal
+"C:\Nouveau dossier\mingw64\bin\cmake.exe" "-SC:/Users/HP PAVILION/Desktop/arbri/TreeAsci" "-BC:/Users/HP PAVILION/Desktop/arbri/TreeAsci/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/HP PAVILION/Desktop/arbri/TreeAsci/build/TreeAsci.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,3 @@
+C:/Users/HP PAVILION/Desktop/arbri/TreeAsci/build/CMakeFiles/TreeAsci.dir
+C:/Users/HP PAVILION/Desktop/arbri/TreeAsci/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/HP PAVILION/Desktop/arbri/TreeAsci/build/CMakeFiles/ZERO_CHECK.dir
